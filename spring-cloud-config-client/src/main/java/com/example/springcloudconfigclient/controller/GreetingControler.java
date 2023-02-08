@@ -1,0 +1,37 @@
+package com.example.springcloudconfigclient.controller;
+
+import com.example.springcloudconfigclient.DbSettings;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api")
+public class GreetingControler {
+    @Value("${my.greeting: default value}")
+    private String greetingMessage;
+    @Value("some static message")
+    private String staticMessage;
+    @Value("${my.list.values")
+    private List<String> listValues;
+    @Autowired
+    private DbSettings dbSettings;
+    @Autowired
+    private Environment environment;
+
+    @GetMapping("/greeting")
+    public String greeting() {
+        return "my.greeting: " + greetingMessage + " db.connection: " + dbSettings.getConnection();
+    }
+
+    @GetMapping("/envDetails")
+    public String envDetails() {
+        return environment.toString();
+    }
+
+}

@@ -1,0 +1,19 @@
+app:
+  name: My app
+  description: Welcome to ${app.name}
+
+my:
+  greeting: Hello World
+  list:
+    values: One, Two, Three
+
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: "*"
+
+spring:
+  config:
+    import: "optional:configserver:http://localhost:8090"
+
