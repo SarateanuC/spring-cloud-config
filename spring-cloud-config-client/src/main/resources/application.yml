@@ -11,9 +11,13 @@ management:
   endpoints:
     web:
       exposure:
-        exclude: "*"
+        include: "*"
 
 spring:
   config:
     import: "optional:configserver:http://localhost:8090"
+  application:
+    name: spring-cloud-config-client
+
+
 
